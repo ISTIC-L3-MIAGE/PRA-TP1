@@ -1,11 +1,11 @@
 package bah.tahi.tp1;
 
-public class Grille {
+public class Grid {
 
 	int height, width;
 	String[][] array;
 
-	public Grille(int height, int width) {
+	public Grid(int height, int width) {
 		this.height = height;
 		this.width = width;
 		this.array = new String[height][width];

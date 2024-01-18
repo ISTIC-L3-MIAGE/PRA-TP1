@@ -4,7 +4,7 @@ public abstract class AlexTesteur {
 
 	public static void main(String[] args) {
 		// test correctCoords()
-		Grille g1 = new Grille(6, 3);
+		Grid g1 = new Grid(6, 3);
 		// System.out.println(g1.correctCoords(2, 0)); // true
 		// System.out.println(g1.correctCoords(3, 4)); // false
 
