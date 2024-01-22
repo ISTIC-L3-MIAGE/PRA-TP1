@@ -1,4 +1,4 @@
-package bah.tahi.tp1.test;
+package bah.tahi.tp1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
