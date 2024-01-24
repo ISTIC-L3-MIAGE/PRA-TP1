@@ -141,7 +141,7 @@ public class TestCrossword {
 			probleme += testMethode(meth);
 		}
 		if (probleme.length() > 0) {
-			fail("Ces appels de fonction devraient d�clencher une RuntimeException : " + probleme.toString());
+			fail("Ces appels de fonction devraient déclencher une RuntimeException : " + probleme.toString());
 		}
 	}
 
@@ -225,7 +225,7 @@ public class TestCrossword {
 	private void testGrille(Object[][] grille, String libelle) {
 		Object attendu;
 		Object observe = null;
-		for (int lig = 0; lig < mc.getHeight(); lig++)
+		for (int lig = 0; lig < mc.getHeight(); lig++) {
 			for (int col = 0; col < mc.getWidth(); col++) {
 				if (!noire[lig][col]) {
 					attendu = grille[lig][col];
@@ -248,6 +248,7 @@ public class TestCrossword {
 							"La case (" + lig + "," + col + ") de " + libelle + " doit contenir \"" + attendu + "\".");
 				}
 			}
+		}
 	}
 
 }

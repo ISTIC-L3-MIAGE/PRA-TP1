@@ -9,13 +9,6 @@ public class Crossword {
 		this.proposition = new Grid(height, width);
 		this.horizontal = new Grid(height, width);
 		this.vertical = new Grid(height, width);
-
-		for (int row = 0; row < height; row++) {
-			for (int column = 0; column < width; column++) {
-				// this.horizontal.setCell(row, column, null);
-				// this.vertical.setCell(row, column, null);
-			}
-		}
 	}
 
 	public int getHeight() {
@@ -31,6 +24,7 @@ public class Crossword {
 	}
 
 	public boolean isBlackSquare(int row, int column) {
+		assert this.correctCoords(row, column) : "Erreur";
 		return this.solution.getCell(row, column) == null;
 	}
 
@@ -43,6 +37,7 @@ public class Crossword {
 	}
 
 	public char getSolution(int row, int column) {
+		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
 		return this.solution.getCell(row, column).charAt(0);
 	}
 
@@ -51,6 +46,7 @@ public class Crossword {
 	}
 
 	public char getProposition(int row, int column) {
+		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
 		return this.proposition.getCell(row, column).charAt(0);
 	}
 
@@ -58,9 +54,9 @@ public class Crossword {
 		this.proposition.setCell(row, column, String.valueOf(solution));
 	}
 
-	public char getDefinition(int row, int column, boolean horizontal) {
-		return horizontal ? this.horizontal.getCell(row, column).charAt(0)
-				: this.vertical.getCell(row, column).charAt(0);
+	public String getDefinition(int row, int column, boolean horizontal) {
+		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
+		return horizontal ? this.horizontal.getCell(row, column) : this.vertical.getCell(row, column);
 	}
 
 	public void setDefinition(int row, int column, boolean horizontal, String definition) {

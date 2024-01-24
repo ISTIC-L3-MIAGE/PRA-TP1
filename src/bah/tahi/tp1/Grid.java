@@ -9,12 +9,6 @@ public class Grid {
 		this.height = height;
 		this.width = width;
 		this.array = new String[height][width];
-		// Blanchissement des cases
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				this.array[i][j] = " ";
-			}
-		}
 	}
 
 	public int getHeight() {
