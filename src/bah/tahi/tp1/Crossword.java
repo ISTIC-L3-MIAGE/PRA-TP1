@@ -9,56 +9,65 @@ public class Crossword {
 		this.proposition = new Grid(height, width);
 		this.horizontal = new Grid(height, width);
 		this.vertical = new Grid(height, width);
+
+		for (int row = 0; row < height; row++) {
+			for (int column = 0; column < width; column++) {
+				// this.horizontal.setCell(row, column, null);
+				// this.vertical.setCell(row, column, null);
+			}
+		}
 	}
 
 	public int getHeight() {
-		return solution.getHeight();
+		return this.solution.getHeight();
 	}
 
 	public int getWidth() {
-		return solution.getWidth();
+		return this.solution.getWidth();
 	}
 
 	public boolean correctCoords(int row, int column) {
-		// Pourquoi ???
-		return solution.correctCoords(row, column) || proposition.correctCoords(row, column)
-				|| horizontal.correctCoords(row, column) || vertical.correctCoords(row, column);
+		return this.solution.correctCoords(row, column);
 	}
 
 	public boolean isBlackSquare(int row, int column) {
-		// à compléter
-		return false;
+		return this.solution.getCell(row, column) == null;
 	}
 
 	public void setBlackSquare(int row, int column, boolean black) {
-		// à compléter
+		if (black) {
+			this.solution.setCell(row, column, null);
+		} else {
+			this.solution.setCell(row, column, " ");
+		}
 	}
 
 	public char getSolution(int row, int column) {
-		// à compléter
-		return 'a';
+		return this.solution.getCell(row, column).charAt(0);
 	}
 
 	public void setSolution(int row, int column, char solution) {
-		// à compléter
+		this.solution.setCell(row, column, String.valueOf(solution));
 	}
 
 	public char getProposition(int row, int column) {
-		// à compléter
-		return 'a';
+		return this.proposition.getCell(row, column).charAt(0);
 	}
 
 	public void setProposition(int row, int column, char solution) {
-		// à compléter
+		this.proposition.setCell(row, column, String.valueOf(solution));
 	}
 
 	public char getDefinition(int row, int column, boolean horizontal) {
-		// à compléter
-		return 'a';
+		return horizontal ? this.horizontal.getCell(row, column).charAt(0)
+				: this.vertical.getCell(row, column).charAt(0);
 	}
 
 	public void setDefinition(int row, int column, boolean horizontal, String definition) {
-		// à compléter
+		if (horizontal) {
+			this.horizontal.setCell(row, column, definition);
+		} else {
+			this.vertical.setCell(row, column, definition);
+		}
 	}
-
 }
