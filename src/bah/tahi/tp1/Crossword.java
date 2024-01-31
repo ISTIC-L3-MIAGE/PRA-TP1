@@ -24,46 +24,76 @@ public class Crossword {
 	}
 
 	public boolean isBlackSquare(int row, int column) {
-		assert this.correctCoords(row, column) : "Erreur";
-		return this.solution.getCell(row, column) == null;
-	}
-
-	public void setBlackSquare(int row, int column, boolean black) {
-		if (black) {
-			this.solution.setCell(row, column, null);
+		if (this.correctCoords(row, column)) {
+			return this.solution.getCell(row, column) == null;
 		} else {
-			this.solution.setCell(row, column, " ");
+			throw new RuntimeException();
 		}
 	}
 
-	public char getSolution(int row, int column) {
-		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
-		return this.solution.getCell(row, column).charAt(0);
+	public void setBlackSquare(int row, int column, boolean black) {
+		if (this.correctCoords(row, column)) {
+			if (black) {
+				this.solution.setCell(row, column, null);
+			} else {
+				this.solution.setCell(row, column, " ");
+			}
+		} else {
+			throw new RuntimeException();
+		}
+
 	}
 
-	public void setSolution(int row, int column, char solution) {
-		this.solution.setCell(row, column, String.valueOf(solution));
+	public char getSolution(int row, int column) throws RuntimeException {
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			return this.solution.getCell(row, column).charAt(0);
+		} else {
+			throw new RuntimeException();
+		}
+
 	}
 
-	public char getProposition(int row, int column) {
-		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
-		return this.proposition.getCell(row, column).charAt(0);
+	public void setSolution(int row, int column, char solution) throws RuntimeException {
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			this.solution.setCell(row, column, String.valueOf(solution));
+		} else {
+			throw new RuntimeException();
+		}
+	}
+
+	public char getProposition(int row, int column) throws RuntimeException {
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			return this.proposition.getCell(row, column).charAt(0);
+		} else {
+			throw new RuntimeException();
+		}
 	}
 
 	public void setProposition(int row, int column, char solution) {
-		this.proposition.setCell(row, column, String.valueOf(solution));
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			this.proposition.setCell(row, column, String.valueOf(solution));
+		} else {
+			throw new RuntimeException();
+		}
 	}
 
-	public String getDefinition(int row, int column, boolean horizontal) {
-		assert this.correctCoords(row, column) && !this.isBlackSquare(row, column) : "Erreur";
-		return horizontal ? this.horizontal.getCell(row, column) : this.vertical.getCell(row, column);
+	public String getDefinition(int row, int column, boolean horizontal) throws RuntimeException {
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			return horizontal ? this.horizontal.getCell(row, column) : this.vertical.getCell(row, column);
+		} else {
+			throw new RuntimeException();
+		}
 	}
 
 	public void setDefinition(int row, int column, boolean horizontal, String definition) {
-		if (horizontal) {
-			this.horizontal.setCell(row, column, definition);
+		if (this.correctCoords(row, column) && !this.isBlackSquare(row, column)) {
+			if (horizontal) {
+				this.horizontal.setCell(row, column, definition);
+			} else {
+				this.vertical.setCell(row, column, definition);
+			}
 		} else {
-			this.vertical.setCell(row, column, definition);
+			throw new RuntimeException();
 		}
 	}
 }

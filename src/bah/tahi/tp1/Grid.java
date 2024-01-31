@@ -23,11 +23,11 @@ public class Grid {
 		return 0 <= row && row < height && 0 <= column && column < width;
 	}
 
-	public String getCell(int row, int column) {
+	public String getCell(int row, int column) throws RuntimeException {
 		return array[row][column];
 	}
 
-	public void setCell(int row, int column, String string) {
+	public void setCell(int row, int column, String string) throws RuntimeException {
 		array[row][column] = string;
 	}
 
